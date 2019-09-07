@@ -27,7 +27,5 @@ class SplashActivity : AppCompatActivity() {
             startActivity(Intent(this, QuizActivity::class.java))
             finish()
         }, (3 * 1000).toLong())
-
-        //s
     }
 }

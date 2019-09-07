@@ -9,4 +9,6 @@
     <string name="finish">Finish</string>
     <string name="_1">1</string>
     <string name="quiz_questions">Quiz Questions</string>
+    <string name="your_score">Your Score:</string>
+    <string name="no_of_questions">no. of questions</string>
 </resources>

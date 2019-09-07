@@ -1,5 +1,6 @@
 package com.example.quizapplication.view
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -92,7 +93,23 @@ class QuizActivity : AppCompatActivity(), QuizContract.QuizView {
             button_finish.visibility = View.GONE
             loadQuestions(mCount)
         }
-        builder.setNegativeButton("Cancel") { dialogInterface, which ->
+
+        builder.setNegativeButton("Finish") { dialogInterface, which ->
+
+            val intent = Intent(this, ScoreActivity::class.java)
+            //Bundle created
+            val bundle = Bundle()
+            //Adding data to bundle
+            bundle.putInt("totalScore", mTotalScore)
+            bundle.putInt("totalQuestions", mQuizQuestions.questions?.size!!)
+            //Adding the bundle to the intent
+            intent.putExtras(bundle)
+            //passing data to the next activity
+            startActivity(intent)
+            finish()
+        }
+
+        builder.setNeutralButton("Cancel") { dialogInterface, which ->
 
         }
         val alertDialog: AlertDialog = builder.create()
@@ -104,7 +121,7 @@ class QuizActivity : AppCompatActivity(), QuizContract.QuizView {
      * populating the questions in the respective elements from model class
      */
     private fun loadQuestions(i: Int) {
-        text_question_number.text = (i+1).toString()+ "."
+        text_question_number.text = (i + 1).toString() + "."
         text_question.text = mQuizQuestions.questions?.get(i)?.question
         option0.text = mQuizQuestions.questions!![i].answers?.get(0)?.option
         option1.text = mQuizQuestions.questions!![i].answers?.get(1)?.option
